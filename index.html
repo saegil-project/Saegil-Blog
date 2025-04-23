@@ -2,109 +2,143 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>우리 팀 블로그</title>
+  <title>새길 팀 블로그</title>
   <style>
+    :root {
+      --main-blue: #3384E4;
+      --main-yellow: #FFC107;
+      --bg-dark: #181A1B;
+      --card-dark: #23272A;
+      --text-main: #fff;
+      --text-sub: #bdbdbd;
+      --border-dark: #22262b;
+    }
     body {
-      background: #111;
-      color: #fff;
-      max-width: 700px;
-      margin: 40px auto;
-      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
-      line-height: 1.7;
-      padding: 24px;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px 0 rgba(51, 132, 228, 0.15);
+      background: var(--bg-dark);
+      color: var(--text-main);
+      max-width: 760px;
+      margin: 0 auto;
+      font-family: 'Pretendard', 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.75;
+      padding: 48px 16px 32px 16px;
+      min-height: 100vh;
     }
-    h1 {
-      color: #3384E4;
-      border-bottom: 2px solid #3384E4;
-      padding-bottom: 0.3em;
-      margin-bottom: 1em;
-      font-weight: 700;
+    header {
+      text-align: left;
+      margin-bottom: 40px;
     }
-    h2 {
-      color: #FFC107;
-      margin-top: 2em;
-      margin-bottom: 0.8em;
-      font-weight: 700;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      background: #181e25;
-      margin-bottom: 1.2em;
-      padding: 1.2em 1.1em 1em 1.1em;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px 0 rgba(51, 132, 228, 0.08);
-      display: flex;
-      align-items: baseline;
-      /* transition: background 0.2s; */
-    }
-    li:hover {
-      background: #232a34;
-    }
-    .post-link {
-      color: #3384E4;
-      font-size: 1.15em;
-      font-weight: 600;
-      text-decoration: none;
-      flex: 1;
-      transition: color 0.2s;
-    }
-    .post-link:hover {
-      color: #FFC107;
-      text-decoration: underline;
-    }
-    .date {
-      color: #FFC107;
-      font-size: 0.98em;
-      margin-left: 1em;
-      font-family: 'Fira Mono', monospace;
-      letter-spacing: 0.03em;
+    .logo {
+      font-size: 2.2em;
+      font-weight: 800;
+      color: var(--main-blue);
+      letter-spacing: -2px;
+      margin-bottom: 0.2em;
+      display: inline-block;
     }
     .desc {
-      color: #bbb;
-      font-size: 0.97em;
-      margin-top: 0.4em;
-      margin-left: 0.1em;
+      color: var(--text-sub);
+      font-size: 1.08em;
+      margin-top: 0.2em;
+      margin-bottom: 0.5em;
     }
-    hr {
-      border: none;
-      border-top: 2px dashed #3384E4;
-      margin: 2em 0;
+    .new-post-btn {
+      display: inline-block;
+      background: var(--main-blue);
+      color: #fff;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 24px;
+      text-decoration: none;
+      margin-top: 10px;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+    .new-post-btn:hover {
+      background: var(--main-yellow);
+      color: #222;
+    }
+    .post-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .post-card {
+      background: var(--card-dark);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 rgba(51,132,228,0.10);
+      padding: 30px 28px 22px 28px;
+      margin-bottom: 28px;
+      border: 1.5px solid var(--border-dark);
+      transition: box-shadow 0.2s, border 0.2s, transform 0.14s;
+      position: relative;
+    }
+    .post-card:hover {
+      box-shadow: 0 8px 32px 0 rgba(51,132,228,0.19);
+      border: 1.5px solid var(--main-blue);
+      transform: translateY(-3px) scale(1.012);
+    }
+    .post-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: var(--main-blue);
+      margin-bottom: 0.3em;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: block;
+    }
+    .post-title:hover {
+      color: var(--main-yellow);
+      text-decoration: underline;
+    }
+    .post-date {
+      color: var(--main-yellow);
+      font-size: 0.97em;
+      font-family: 'Fira Mono', monospace;
+      margin-bottom: 0.7em;
+      display: block;
+      letter-spacing: 0.02em;
+    }
+    .post-summary {
+      color: var(--text-sub);
+      font-size: 1.07em;
+      margin-bottom: 0.5em;
     }
     footer {
-      margin-top: 3em;
+      margin-top: 48px;
       color: #888;
-      font-size: 0.92em;
+      font-size: 0.95em;
       text-align: center;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
+      border-top: 1px solid #23272A;
+      padding-top: 24px;
     }
     @media (max-width: 800px) {
       body {
-        padding: 10px;
-        border-radius: 0;
-        margin: 0;
+        padding: 12px;
+      }
+      .post-card {
+        padding: 18px 10px 15px 14px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>우리 팀 블로그</h1>
-  <p class="desc">프로젝트 소식, 회고, 팀 노하우를 공유합니다.<br>
-  <span style="color:#3384E4;">함께 성장하는 우리 팀!</span></p>
-  <h2>글 목록</h2>
-  <ul>
-    <li>
-      <a class="post-link" href="post.html?file=post1.md">첫 번째 글: 프로젝트 시작!</a>
-      <span class="date">2025-04-23</span>
+  <header>
+    <span class="logo">새길 팀 블로그</span>
+    <div class="desc" style="color:var(--main-yellow); font-weight:600;">북한이탈주민을 위한 서비스</div>
+    <div class="desc">프로젝트 소식, 회고, 팀 노하우를 공유합니다.<br></div>
+    <!-- <a class="new-post-btn" href="#">+ 새 글 작성</a> -->
+  </header>
+  <ul class="post-list">
+    <li class="post-card">
+      <a class="post-title" href="post.html?file=post1.md">첫 번째 글: 프로젝트 시작!</a>
+      <span class="post-date">2025-04-23</span>
+      <div class="post-summary">우리 팀의 첫 프로젝트 시작을 알리는 글입니다. 앞으로의 일정과 목표를 공유합니다.</div>
     </li>
-    <!-- 새로운 글을 추가하려면 위와 같은 형식으로 li 태그를 복사해서 붙여넣으세요 -->
+    <!-- 새 글은 위와 같은 형식으로 li.post-card를 복사해서 추가하세요 -->
   </ul>
   <footer>
-    &copy; 2025 우리 팀 블로그 &middot; Powered by <span style="color:#3384E4;">GitHub Pages</span>
+    &copy; 2025 우리 팀 블로그 &middot; Powered by <span style="color:var(--main-blue);">GitHub Pages</span>
   </footer>
 </body>
 </html>
