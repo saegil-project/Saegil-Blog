@@ -5,16 +5,92 @@
   <title>팀 블로그 - 글 보기</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
-    body { max-width: 700px; margin: 30px auto; font-family: 'Segoe UI', sans-serif; }
-    pre { background: #f6f8fa; padding: 1em; }
-    a { color: #0366d6; }
+    body {
+      background: #111;
+      color: #fff;
+      max-width: 700px;
+      margin: 40px auto;
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      padding: 24px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(51, 132, 228, 0.15);
+    }
+    a {
+      color: #3384E4;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #FFC107;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #3384E4;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+      font-weight: 700;
+    }
+    h1 {
+      border-bottom: 2px solid #3384E4;
+      padding-bottom: 0.3em;
+    }
+    strong {
+      color: #FFC107;
+    }
+    hr {
+      border: none;
+      border-top: 2px dashed #3384E4;
+      margin: 2em 0;
+    }
+    code, pre {
+      background: #222;
+      color: #FFC107;
+      border-radius: 6px;
+      padding: 0.2em 0.5em;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1em;
+    }
+    pre {
+      padding: 1em;
+      overflow-x: auto;
+      margin: 1.5em 0;
+    }
+    ul, ol {
+      padding-left: 1.5em;
+    }
+    blockquote {
+      border-left: 4px solid #3384E4;
+      background: #181e25;
+      color: #eee;
+      padding: 0.8em 1.2em;
+      margin: 1.5em 0;
+      border-radius: 8px;
+    }
+    #back-link {
+      display: inline-block;
+      margin-bottom: 2em;
+      color: #FFC107;
+      font-weight: bold;
+      font-size: 1.1em;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    #back-link:hover {
+      color: #3384E4;
+    }
+    #content img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 2px solid #3384E4;
+      margin: 1em 0;
+      background: #181e25;
+    }
   </style>
 </head>
 <body>
-  <a href="index.html">← 글 목록으로 돌아가기</a>
+  <a id="back-link" href="index.html">← 글 목록으로 돌아가기</a>
   <div id="content">로딩 중...</div>
   <script>
-    // URL에서 file 파라미터 추출
     function getQueryParam(name) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(name);
