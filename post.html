@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>팀 블로그 - 글 보기</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { max-width: 700px; margin: 30px auto; font-family: 'Segoe UI', sans-serif; }
+    pre { background: #f6f8fa; padding: 1em; }
+    a { color: #0366d6; }
+  </style>
+</head>
+<body>
+  <a href="index.html">← 글 목록으로 돌아가기</a>
+  <div id="content">로딩 중...</div>
+  <script>
+    // URL에서 file 파라미터 추출
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    const mdFile = getQueryParam('file');
+    if (!mdFile) {
+      document.getElementById('content').innerHTML = '글 파일이 지정되지 않았습니다.';
+    } else {
+      fetch(mdFile)
+        .then(response => {
+          if (!response.ok) throw new Error('파일을 찾을 수 없습니다.');
+          return response.text();
+        })
+        .then(text => {
+          document.getElementById('content').innerHTML = marked.parse(text);
+        })
+        .catch(err => {
+          document.getElementById('content').innerHTML = '글을 불러오지 못했습니다.';
+        });
+    }
+  </script>
+</body>
+</html>
